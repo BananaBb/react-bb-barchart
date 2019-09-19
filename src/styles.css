@@ -1,9 +1,11 @@
 .bar-chart {
-	position: relative;
-	background-color: #FFFFFF;
-	min-width: 281px;
-	min-height: 230px;
-	display: -webkit-flex; /* Safari */
+  position: relative;
+  background-color: #FFFFFF;
+  width: 281px;
+  height: 230px;
+  min-width: 281px;
+  min-height: 230px;
+  display: -webkit-flex; /* Safari */
   -webkit-flex-wrap: wrap; /* Safari 6.1+ */
   display: flex;  
   flex-direction: row;
@@ -11,9 +13,9 @@
   justify-content: space-between;
 }
 .bar-chart .chart-y {
-	width: 60px;
-	height: calc(100% - 20px);
-	display: -webkit-flex; /* Safari */
+  width: 60px;
+  height: calc(100% - 20px);
+  display: -webkit-flex; /* Safari */
   -webkit-flex-wrap: wrap; /* Safari 6.1+ */
   display: flex;  
   flex-direction: column;
@@ -27,46 +29,49 @@
   margin-right: 12px;
 }
 .bar-chart .chart-x {
-	height: 100%;
-	display: -webkit-flex; /* Safari */
+  height: 100%;
+  display: -webkit-flex; /* Safari */
   -webkit-flex-wrap: wrap; /* Safari 6.1+ */
   display: flex;  
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-	flex-grow: 1;
+  flex-grow: 1;
 }
 .bar-chart .chart-x .chart-content {
-	flex-grow: 1;
+  flex-grow: 1;
 }
 .bar-chart .chart-x .chart-content .axis-x {
-	font-size: 12px;
-	line-height: 19px;
-	text-align: center;
-	height: 19px;
-	border-top: 1px solid #CECECE;
+  font-size: 12px;
+  line-height: 19px;
+  text-align: center;
+  height: 19px;
+  border-top: 1px solid #CECECE;
 }
 .bar-chart .chart-x .chart-content .axis-bar {
-	height: calc(100% - 30px);
-	margin-top: 10px;
-	display: -webkit-flex; /* Safari */
+  height: calc(100% - 30px);
+  margin-top: 10px;
+  display: -webkit-flex; /* Safari */
   -webkit-flex-wrap: wrap; /* Safari 6.1+ */
   display: flex;  
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: flex-end;
 }
-.bar-chart .chart-x .chart-content .axis-bar:first-of-type {
-	border-left: 1px solid #CECECE;
+.bar-chart .chart-x .chart-content:first-of-type .axis-bar {
+  border-left: 1px solid #CECECE;
 }
 .bar-chart .chart-x .chart-content .axis-bar div {
-	background-color: #003781;
-	width: 8px;
-	margin: 0 auto;
+  background-color: #003781;
+  width: 8px;
+  margin: 0 auto;
 }
 .bar-chart .chart-x .chart-content .axis-bar div span {
-	width: 60px;
-	height: 20px;
-  margin: -25px 0 0 -26px;
-	display: block;
+  font-size: 12px;
+  font-weight: normal;
+  text-align: center;
+  width: 60px;
+  height: 14px;
+  margin: -18px 0 0 -26px;
+  display: block;
 }

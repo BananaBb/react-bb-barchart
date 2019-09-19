@@ -9,16 +9,16 @@ export default class BbarChart extends Component {
   }
 
   formater(nums) {
-    let obj = {}
-    let largest, smallest, convert = 0
+    let data = {}
+    let largest, smallest, convert
+        largest = smallest = convert = 0
 
     if (nums) {
-      for (let i=0; i<nums.length; i++) {
-        [...nums[i]].map((val, key) => {
-          console.log(val);
-          convert = val.toString().replace(/(,|\(|\))/g, "");
+      nums.map((obj) => {
+        for (let key in obj) {
+          convert = obj[key].toString().replace(/(,|\(|\))/g, "");
           convert = Number(convert)
-          obj[key] = convert
+          data[key] = convert
 
           if (convert > largest) {
             largest = convert
@@ -26,82 +26,117 @@ export default class BbarChart extends Component {
           if (smallest === 0 || convert < smallest) {
             smallest = convert
           }
-
-          return ""
-        })
-      }
+        }
+        return ""
+      })
     }
 
-    return {obj: obj, largest: largest, smallest: smallest}
+    return {data: data, largest: largest, smallest: smallest}
+  }
+
+  convertUnit(num, unit) {
+    if (unit === 6) {
+      num = (num / Math.pow(10, unit)).toFixed(2) + "m"
+    } else if (unit === 12) {
+      num = (num / Math.pow(10, unit)).toFixed(2) + "b"
+    } else {
+      num = num.toFixed(2)
+    }
+    return num
+  }
+
+  calcRoundup(num) {
+    let digest, multi, divide
+        digest = multi = divide = 0
+
+    if (num > 1) {
+      digest = Math.ceil(num).toString().length - 1
+      if (num > 100) {
+        multi = Math.pow(10, (digest - 1))
+        num = Math.ceil(num / multi) * multi
+      } else {
+        multi = Math.pow(10, digest)
+        num = Math.ceil(num / multi) * multi
+      }
+    } else {
+      digest = (num * 10 >= 1)? -1 : -2
+      divide = Math.pow(10, (digest + 1))
+      num = Math.ceil(num / divide) * divide
+    }
+    return num
+  }
+
+  calcRounddown(num) {
+    let digest, multi, divide
+        digest = multi = divide = 0
+
+    if (num > 1) {
+      digest = Math.floor(num).toString().length - 1
+      if (num > 100) {
+        multi = Math.pow(10, (digest - 1))
+        num = Math.floor(num / multi) * multi
+      } else {
+        multi = Math.pow(10, digest)
+        num = Math.floor(num / multi) * multi
+      }
+    } else {
+      digest = (num * 10 >= 1)? -1 : -2
+      divide = Math.pow(10, digest)
+      num = (Math.floor(num / divide) - 1) * divide
+    }
+    return num
   }
 
   render_Unit(largest, smallest) {
     let million = 6
     let billion = 12
-    let max, mid, min, unit, digest, multi, divide = 0
-
-    if (largest > 1) {
-      digest = Math.ceil(largest).toString().length - 1
-      multi = Math.pow(10, digest)
-
-      if (digest >= billion) {unit = billion} 
-      else if (digestAmt >= million) {unit = million}
-      
-      max = Math.ceil(largest / multi) * multi
-    } else {
-      max = Math.ceil(largest)
-    }
-
-    if (smallest > 1) {
-      digest = Math.floor(smallest).toString().length - 1
-      multi = Math.pow(10, digest)
-      
-      min = Math.floor(smallest / multi) * multi
-    } else {
-      digest = Math.floor(smallest).toString().length - 2
-      divide = Math.pow(10, digest)
-
-      min = Math.floor(smallest * divide) / divide
-    }
-
-    min = (max - min) / 2
+    let max = this.calcRoundup(largest)
+    let min = this.calcRounddown(smallest)
+    let mid = (max + min) / 2
+    let unit = Math.ceil(max).toString().length - 1
+    if (unit >= billion) {unit = billion} 
+    else if (unit >= million) {unit = million}
+    else {unit = 0}
 
     return [max, mid, min, unit]
   }
 
-  render_Y(max, mid, min) {
+  render_Y(max, mid, min, unit) {
     return (
       <div className="chart-y">
-        <span>{max}</span>
-        <span>{mid}</span>
-        <span>{min}</span>
+        <span>{this.convertUnit(max, unit)}</span>
+        <span>{this.convertUnit(mid, unit)}</span>
+        <span>{this.convertUnit(min, unit)}</span>
       </div>
     )
   }
 
-  render_X(nums) {
+  render_X(data, max, min, unit) {
+    let items = []
+    let style = 0
+    for (let key in data) {
+      style = {height: ((data[key] - min) * 200) / (max - min)}
+      items.push(
+        <div className="chart-content" key={"col" + key}>
+          <div className="axis-bar"><div style={style}><span>{this.convertUnit(data[key], unit)}</span></div></div>
+          <div className="axis-x">{key}</div>
+        </div>
+      )
+    }
     return (
       <div className="chart-x">
-        nums.map((val, key) => {
-          
-            <div className="chart-content">
-              <div className="axis-bar"><div><span>{val}</span></div></div>
-              <div className="axis-x">{key}</div>
-            </div>
-          
-        })
+        {items}
       </div>
     )
   }
 
   render() {
     let nums = this.formater(this.props.nums)
-    // console.log(nums);
     let [max, mid, min, unit] = this.render_Unit(nums.largest, nums.smallest)
     return (
       <div className="bar-chart">
-        {this.render_Y(max, mid, min)}
-        {this.render_X(nums.obj)}
+        {this.render_Y(max, mid, min, unit)}
+        {this.render_X(nums.data, max, min, unit)}
       </div>
     )
   }
