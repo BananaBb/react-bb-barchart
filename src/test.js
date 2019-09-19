@@ -1,7 +1,7 @@
-import ExampleComponent from './'
+import BbarChart from './'
 
-describe('ExampleComponent', () => {
+describe('BbarChart', () => {
   it('is truthy', () => {
-    expect(ExampleComponent).toBeTruthy()
+    expect(BbarChart).toBeTruthy()
   })
 })

@@ -4,8 +4,16 @@
   "description": "This is a modulable component to render Bar Chart with some nice features !",
   "author": "BananaBb",
   "license": "MIT",
+  "keywords": [
+    "react",
+    "react-barchart",
+    "bar chart",
+    "bar",
+    "chart"
+  ],
   "repository": "BananaBb/react-bb-barchart",
   "main": "dist/index.js",
+  "style": "dist/styles.css",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
   "engines": {

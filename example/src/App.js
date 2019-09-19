@@ -1,12 +1,17 @@
 import React, { Component } from 'react'
-
-import ExampleComponent from 'react-bb-barchart'
+import BbarChart from 'react-bb-barchart'
 
 export default class App extends Component {
   render () {
     return (
       <div>
-        <ExampleComponent text='Modern React component module' />
+        <BbarChart 
+        	nums={[
+        		{"2018": "1908511"}, 
+        		{"2017": "1883407"}, 
+        		{"2016": "1859414"}
+        	]}
+        />
       </div>
     )
   }
