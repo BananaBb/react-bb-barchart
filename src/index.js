@@ -103,7 +103,7 @@ export default class BbarChart extends Component {
 
   render_Y(max, mid, min, unit) {
     return (
-      <div className="chart-y">
+      <div className="bb-bar-chart-y">
         <span>{this.convertUnit(max, unit)}</span>
         <span>{this.convertUnit(mid, unit)}</span>
         <span>{this.convertUnit(min, unit)}</span>
@@ -117,14 +117,14 @@ export default class BbarChart extends Component {
     for (let key in data) {
       style = {height: ((data[key] - min) * 200) / (max - min)}
       items.push(
-        <div className="chart-content" key={"col" + key}>
+        <div className="bb-bar-chart-content" key={"col" + key}>
           <div className="axis-bar"><div style={style}><span>{this.convertUnit(data[key], unit)}</span></div></div>
           <div className="axis-x">{key}</div>
         </div>
       )
     }
     return (
-      <div className="chart-x">
+      <div className="bb-bar-chart-x">
         {items}
       </div>
     )
@@ -134,7 +134,7 @@ export default class BbarChart extends Component {
     let nums = this.formater(this.props.nums)
     let [max, mid, min, unit] = this.render_Unit(nums.largest, nums.smallest)
     return (
-      <div className="bar-chart">
+      <div className="bb-bar-chart">
         {this.render_Y(max, mid, min, unit)}
         {this.render_X(nums.data, max, min, unit)}
       </div>

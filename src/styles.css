@@ -1,4 +1,4 @@
-.bar-chart {
+.bb-bar-chart {
   position: relative;
   background-color: #FFFFFF;
   width: 281px;
@@ -12,7 +12,7 @@
   flex-wrap: wrap;
   justify-content: space-between;
 }
-.bar-chart .chart-y {
+.bb-bar-chart .bb-bar-chart-y {
   width: 60px;
   height: calc(100% - 20px);
   display: -webkit-flex; /* Safari */
@@ -22,13 +22,13 @@
   flex-wrap: wrap;
   justify-content: space-between;
 }
-.bar-chart .chart-y span {
+.bb-bar-chart .bb-bar-chart-y span {
   font-size: 12px;
   color: #3C3C3B;
   text-align: right;
   margin-right: 12px;
 }
-.bar-chart .chart-x {
+.bb-bar-chart .bb-bar-chart-x {
   height: 100%;
   display: -webkit-flex; /* Safari */
   -webkit-flex-wrap: wrap; /* Safari 6.1+ */
@@ -38,17 +38,17 @@
   justify-content: space-between;
   flex-grow: 1;
 }
-.bar-chart .chart-x .chart-content {
+.bb-bar-chart .bb-bar-chart-x .bb-bar-chart-content {
   flex-grow: 1;
 }
-.bar-chart .chart-x .chart-content .axis-x {
+.bb-bar-chart .bb-bar-chart-x .bb-bar-chart-content .axis-x {
   font-size: 12px;
   line-height: 19px;
   text-align: center;
   height: 19px;
   border-top: 1px solid #CECECE;
 }
-.bar-chart .chart-x .chart-content .axis-bar {
+.bb-bar-chart .bb-bar-chart-x .bb-bar-chart-content .axis-bar {
   height: calc(100% - 30px);
   margin-top: 10px;
   display: -webkit-flex; /* Safari */
@@ -58,15 +58,15 @@
   flex-wrap: wrap;
   justify-content: flex-end;
 }
-.bar-chart .chart-x .chart-content:first-of-type .axis-bar {
+.bb-bar-chart .bb-bar-chart-x .bb-bar-chart-content:first-of-type .axis-bar {
   border-left: 1px solid #CECECE;
 }
-.bar-chart .chart-x .chart-content .axis-bar div {
+.bb-bar-chart .bb-bar-chart-x .bb-bar-chart-content .axis-bar div {
   background-color: #003781;
   width: 8px;
   margin: 0 auto;
 }
-.bar-chart .chart-x .chart-content .axis-bar div span {
+.bb-bar-chart .bb-bar-chart-x .bb-bar-chart-content .axis-bar div span {
   font-size: 12px;
   font-weight: normal;
   text-align: center;
